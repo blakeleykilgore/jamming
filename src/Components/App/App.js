@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import SearchBar from '../SearchBar/SearchBar';
 import SearchResults from '../SearchResults/SearchResults';
 import Playlist from '../Playlist/Playlist';
@@ -12,6 +11,17 @@ class App extends Component {
     	searchResults: [],
       playlistName: 'Playlist Name',
       playlistTracks: []
+    };
+    this.addTrack = this.addTrack.bind(this);
+  }
+
+  addTrack(track) {
+    if(this.state.playlistTracks.find(trackInPlaylist => trackInPlaylist.id !== track.id)) {
+      return;
+    } else {
+      let tracks = this.state.playlistTracks;
+      tracks.push(track);
+      this.setState({playlistTracks: tracks});
     }
   }
 
@@ -20,9 +30,9 @@ class App extends Component {
       <div>
         <h1>Ja<span className="highlight">mmm</span>ing</h1>
         <div className="App">
-          <!-- Add a SearchBar component -->
+          <SearchBar />
           <div className="App-playlist">
-            <SearchResults searchResults={this.state.searchResults} />
+            <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack} />
             <Playlist playlistName={this.state.playlistName} playlistTracks={this.state.playlistTracks} />
           </div>
         </div>
