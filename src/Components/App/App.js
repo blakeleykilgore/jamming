@@ -46,6 +46,10 @@ class App extends Component {
     const trackUris = this.state.playlistTracks.map(playlistTrack => playlistTrack.uri);
   }
 
+  search(term) {
+    console.log(term);
+  }
+
   render() {
     return (
       <div>
