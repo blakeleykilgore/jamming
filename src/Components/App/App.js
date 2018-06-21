@@ -45,10 +45,12 @@ class App extends Component {
 
   savePlaylist() {
     const trackUris = this.state.playlistTracks.map(playlistTrack => playlistTrack.uri);
+    let playlistName = 'New Playlist';
+    Spotify.savePlaylist(this.state.playlistName, trackUris);
   }
 
   search(term) {
-    Spotify.search(term)this.setState({ searchResults: tracks });
+    Spotify.search(term).then(searchResults => this.setState({searchResults: searchResults}));
   }
 
   render() {
