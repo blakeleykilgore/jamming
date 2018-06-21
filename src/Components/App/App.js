@@ -26,6 +26,7 @@ class App extends Component {
       let tracks = this.state.playlistTracks;
       tracks.push(track);
       this.setState({playlistTracks: tracks});
+      console.log(this.state.playlistTracks)
     }
   }
 
@@ -50,7 +51,9 @@ class App extends Component {
   }
 
   search(term) {
+    console.log(term);
     Spotify.search(term).then(searchResults => this.setState({searchResults: searchResults}));
+    console.log(this.state.searchResults)
   }
 
   render() {
