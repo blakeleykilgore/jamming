@@ -20,13 +20,14 @@ const Spotify = {
         window.setTimeout(() => userAccessToken = '', urlExpirationTime * 1000);
         window.history.pushState('Access Token', null, '/');
       } else {
-        const newUrl = `https://accounts.spotify.com/authorize?client_id=CLIENT_ID&response_type=token&scope=playlist-modify-public&redirect_uri=REDIRECT_URI`;
+        const newUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectUrl}`;
         window.location = newUrl;
       }
     }
   },
 
   search(term) {
+    this.getAccessToken();
     const searchUrl = `https://api.spotify.com/v1/search?type=track&q=${term}`;
     return fetch(searchUrl, {
       headers: {
