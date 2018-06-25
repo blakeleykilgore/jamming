@@ -27,7 +27,6 @@ class App extends Component {
       let tracks = this.state.playlistTracks;
       tracks.push(track);
       this.setState({playlistTracks: tracks});
-      console.log(this.state.playlistTracks)
     }
   }
 

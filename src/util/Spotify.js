@@ -57,18 +57,18 @@ const Spotify = {
       };
       let userId = undefined;
       let spotifyEndpoint = `https://api.spotify.com/v1/me`;
-      fetch(spotifyEndpoint, {
+       return fetch(spotifyEndpoint, {
         headers: headers
       }).then(response => response.json()).then(jsonResponse => userId = jsonResponse.id).then(() => {
-        const createPlaylistUrl = `/v1/users/{user_id}/playlists`;
-        fetch(createPlaylistUrl, {
+        const createPlaylistUrl = `/v1/users/${userId}/playlists`;
+         return fetch(createPlaylistUrl, {
           headers: headers,
           method: 'POST',
           body: { uris: trackUris }
         })
       }).then(response => response.json()).then(jsonResponse => spotifyEndpoint = jsonResponse.id).then(() => {
           const addTracksToPlaylist = `https://api.spotify.com/v1/users/${userId}/playlists/${spotifyEndpoint}/tracks`;
-          fetch(addTracksToPlaylist, {
+           fetch(addTracksToPlaylist, {
             method: 'POST',
             headers: headers,
             body: JSON.stringify({
